@@ -16,19 +16,7 @@ build:
     refs:
       - branches
  script:
-  - sudo apt-get update -y
-  - sudo apt-get install -y git
-  - sudo apt-get install -y curl
-  - sudo apt-get install -y nodejs
-  - sudo apt-get install -y npm
-  - sudo mkdir -p /app
-  - cd /app
-  - sudo git clone https://github.com/luciagore/cooking.git
-  - cd cooking
-  - sudo npm install
-  - sudo mkdir -p /data/db
-  - sudo chmod -R go+w /data/db
-  - sudo service mongodb start
+  - sudo npm i
 
 test_unit:
   stage: test
