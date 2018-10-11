@@ -12,17 +12,11 @@ stages:
 
 build:
  stage: build
- only:
-    refs:
-      - branches
  script:
   - sudo npm i
 
 test_unit:
   stage: test
-  only:
-    refs:
-      - branches
   services:
     - mongo:3.1.6
   script:
@@ -33,9 +27,6 @@ test_unit:
 
 test_feature:
   stage: test
-  only:
-    refs:
-      - branches
   services:
     - mongo:3.1.6
   script:
@@ -46,9 +37,6 @@ test_feature:
 
 test_ui:
   stage: test
-  only:
-    refs:
-      - branches
   services:
     - mongo:3.1.6
   script:
