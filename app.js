@@ -10,7 +10,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 // var db = monk('localhost:27017/cookingDB');
 
-var db = monk('localhost:27017/cookingDB', function(err, db){
+var db = monk('mongodb://ec2-34-255-190-53.eu-west-1.compute.amazonaws.com:27017/cookingDB', function(err, db){
   console.log('about to connect to DB');
   if(err){
      console.error("Db is not connected", err.message);
