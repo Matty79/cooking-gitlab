@@ -1,5 +1,5 @@
 
-image: docker-java8-mvn-nodejs-npm
+image: node
 
 # cache:
 #   paths:
