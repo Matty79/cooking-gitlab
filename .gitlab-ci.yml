@@ -1,5 +1,5 @@
 
-image: docker-java8-mvn-nodejs-npm
+image: rowanto/docker-java8-mvn-nodejs-npm
 
 # cache:
 #   paths:
@@ -15,24 +15,6 @@ build:
  stage: build
  script:
   - npm i
-
-code_quality:
-  image: docker:stable
-  variables:
-    DOCKER_DRIVER: overlay2
-  allow_failure: true
-  services:
-    - docker:stable-dind
-  script:
-    - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
-    - docker run
-        --env SOURCE_CODE="$PWD"
-        --volume "$PWD":/code
-        --volume /var/run/docker.sock:/var/run/docker.sock
-        "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
-  artifacts:
-    reports:
-      codequality: [gl-code-quality-report.json]
 
 test_unit:
   stage: test
@@ -65,5 +47,23 @@ test_ui:
   - npm i
   - DATABASE_URL=mongodb://ec2-34-255-190-53.eu-west-1.compute.amazonaws.com:27017/cookingDB
   - npm run test:ui
+
+  code_quality:
+  image: docker:stable
+  variables:
+    DOCKER_DRIVER: overlay2
+  allow_failure: true
+  services:
+    - docker:stable-dind
+  script:
+    - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
+    - docker run
+        --env SOURCE_CODE="$PWD"
+        --volume "$PWD":/code
+        --volume /var/run/docker.sock:/var/run/docker.sock
+        "registry.gitlab.com/gitlab-org/security-products/codequality:$SP_VERSION" /code
+  artifacts:
+    reports:
+      codequality: [gl-code-quality-report.json]
 
 
