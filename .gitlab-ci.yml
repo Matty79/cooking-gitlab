@@ -1,5 +1,5 @@
 
-image: docker-java8-mvn-nodejs-npm
+image: rowanto/docker-java8-mvn-nodejs-npm
 
 # cache:
 #   paths:
