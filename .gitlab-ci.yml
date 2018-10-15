@@ -15,6 +15,7 @@ stages:
 build:
  stage: build
  script:
+  - npm i npm@latest -g
   - npm i
 
 test_unit:
@@ -22,8 +23,6 @@ test_unit:
   services:
     - mongo:3.1.6
   script:
-  - npm i npm@latest -g
-  - npm i
   - DATABASE_URL=mongodb://ec2-34-255-190-53.eu-west-1.compute.amazonaws.com:27017/cookingDB
   - npm run test:unit
 
@@ -32,20 +31,16 @@ test_feature:
   services:
     - mongo:3.1.6
   script:
-  - npm i npm@latest -g
-  - npm i
   - DATABASE_URL=mongodb://ec2-34-255-190-53.eu-west-1.compute.amazonaws.com:27017/cookingDB
   - npm run test
 
 test_ui:
   stage: test
-  image: java
+  image: openjdk:latest
   services:
     - mongo:3.1.6
     - selenium/standalone-chrome:latest
   script:
-  - npm i npm@latest -g
-  - npm i
   - DATABASE_URL=mongodb://ec2-34-255-190-53.eu-west-1.compute.amazonaws.com:27017/cookingDB
   - npm run test:ui
 
