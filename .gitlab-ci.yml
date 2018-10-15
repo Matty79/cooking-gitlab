@@ -1,5 +1,5 @@
 
-image: rowanto/docker-java8-mvn-nodejs-npm
+image: docker-java8-mvn-nodejs-npm
 
 # cache:
 #   paths:
@@ -8,8 +8,9 @@ image: rowanto/docker-java8-mvn-nodejs-npm
 
 stages:
   - build
-  - code quality
   - test
+  - code quality
+
 
 build:
  stage: build
@@ -48,7 +49,7 @@ test_ui:
   - DATABASE_URL=mongodb://ec2-34-255-190-53.eu-west-1.compute.amazonaws.com:27017/cookingDB
   - npm run test:ui
 
-  code_quality:
+code_quality:
   image: docker:stable
   variables:
     DOCKER_DRIVER: overlay2
@@ -65,5 +66,3 @@ test_ui:
   artifacts:
     reports:
       codequality: [gl-code-quality-report.json]
-
-
