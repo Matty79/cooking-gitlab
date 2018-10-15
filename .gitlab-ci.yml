@@ -1,5 +1,5 @@
 
-image: selenium/hub
+image: rowanto/docker-java8-mvn-nodejs-npm
 
 # cache:
 #   paths:
