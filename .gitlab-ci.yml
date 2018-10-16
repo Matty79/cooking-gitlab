@@ -1,5 +1,5 @@
 
-image: rowanto/docker-java8-mvn-nodejs-npm
+image: matty79/cooking-gitlab
 
 # cache:
 #   paths:
